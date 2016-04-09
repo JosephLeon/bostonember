@@ -1,21 +1,22 @@
 import Ember from 'ember';
-import startApp from 'bostonember/tests/helpers/start-app';
+import { module, test } from 'qunit';
+import startApp from '../helpers/start-app';
 
 var App;
 
-module('Integration Page - About', {
-	beforeEach: function() {
-		App = startApp();
-	},
-	afterEach: function() {
-		Ember.run(App, 'destroy');
-	}
+module('Integration - About Page', {
+  beforeEach: function() {
+    App = startApp();
+  },
+  afterEach: function() {
+    Ember.run(App, 'destroy');
+  }
 });
 
-test('Should navigate to the about page', function() {
-	visit('/').then(function(assert) {
-		click("a:contains('About')").then(function(assert) {
+test('Should navigate to the About page', function(assert) {
+  visit('/').then(function() {
+    click("a:contains('About')").then(function() {
       assert.equal(find('h3').text(), 'About');
     });
-	});
+  });
 });
